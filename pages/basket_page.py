@@ -3,6 +3,7 @@ from .locators import BasketPageLocators
 
 
 class BasketPage(BasePage):
+
     def should_be_empty_basket(self):
         empty_message = self.browser.find_element(*BasketPageLocators.EMPTY_MESSAGE).text
         assert "basket is empty" in empty_message, "basket is not empty"
