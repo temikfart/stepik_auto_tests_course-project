@@ -1,6 +1,7 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
+
 class ProductPage(BasePage):
     def add_product_to_basket(self):
         self.should_be_add_to_basket_button()
@@ -16,13 +17,13 @@ class ProductPage(BasePage):
             "'Add to basket' button is missing"
 
     def should_be_product_in_basket(self):
-        assert self.is_element_present(*ProductPageLocators.ADDED_TO_BASKET_ALERT), \
+        assert self.is_element_present(*ProductPageLocators.NAME_IN_ADDED_TO_BASKET_ALERT), \
             "'Added to basket' alert is missing"
 
     def should_be_same_products_in_basket_and_on_the_page(self):
         name_of_product = self.browser.find_element(*ProductPageLocators.NAME_OF_PRODUCT).text
-        name_of_added_product = self.browser.find_element(*ProductPageLocators.ADDED_TO_BASKET_ALERT).text
-        assert name_of_product in name_of_added_product, \
+        name_of_added_product = self.browser.find_element(*ProductPageLocators.NAME_IN_ADDED_TO_BASKET_ALERT).text
+        assert name_of_product == name_of_added_product, \
             "name of product and of the added to basket product aren't same"
 
     def should_be_correct_price_in_basket(self):
